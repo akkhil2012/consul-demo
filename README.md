@@ -43,3 +43,6 @@ export PATH=$PATH:/consul
 To generate the encrypted key:
 Eg, Key:  lcLuo15MxnC4PpMPwuTkwQ==( ensure key doen’t contain /)
 To be used to run command from all three servers
+
+
+
