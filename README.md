@@ -1,4 +1,4 @@
-Cnsul Demo
+Consul Demo
 
 This repository explains the basic use for the Consul, as service Regustry tool in the microservices Architecture
 
