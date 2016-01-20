@@ -36,24 +36,20 @@ Vagrant.configure(2) do |config|
   
   config.vm.define "bootstrapServer" do |consul1|
     consul1.vm.box = "hashicorp/precise64"
-	consul1.vm.network "private_network", ip: "192.0.2.1"
+	consul1.vm.network "private_network", ip: "192.0.2.4"
   end
   
-config.vm.define "NonBootstrapServer" do |consul2|
+config.vm.define "NonBootstrapServe1" do |consul2|
     consul2.vm.box = "hashicorp/precise64"
-	consul2.vm.network "private_network", ip: "192.0.2.2"
+	consul2.vm.network "private_network", ip: "192.0.2.5"
   end
 
-  config.vm.define "AgentServer" do |consul3|
+  config.vm.define "NonBootstrapServer2" do |consul3|
     consul3.vm.box = "hashicorp/precise64"
-	consul3.vm.network "private_network", ip: "192.0.2.3"
+	consul3.vm.network "private_network", ip: "192.0.2.6"
   end
   
 
-  config.vm.define "ConsulClient" do |client|
-    client.vm.box = "hashicorp/precise64"
-	client.vm.network "private_network", ip: "192.0.2.50"
-  end
   
   
   # Share an additional folder to the guest VM. The first argument is
