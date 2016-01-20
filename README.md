@@ -17,6 +17,9 @@ https://atlas.hashicorp.com/hashicorp/boxes/precise64
 vagrant init hashicorp/precise64; 
 vagrant up --provider virtualbox
 
+
+
+
 Following are to be run on all Consul Servers:
 sudo su
 apt-get update
@@ -41,8 +44,37 @@ export PATH=$PATH:/consul
 >> consul keygen
 
 To generate the encrypted key:
-Eg, Key:  lcLuo15MxnC4PpMPwuTkwQ==( ensure key doen’t contain /)
+Eg, Key:  f6HnfkLTGbIkFcAfCGZ4RQ==( ensure key doen’t contain /)
 To be used to run command from all three servers
+
+
+The same can be acheived by the following inline commands:
+To execute on the Consul Server to be designated as BootStrap Server:
+consul agent -dc demo -server -bootstrap -data-dir /var/vagrant -ui-dir /home/vagrant/dist -client 192.0.2.4 -node=consul-agent1 -bind=192.0.2.4 encrypt=f6HnfkLTGbIkFcAfCGZ4RQ==
+
+
+to execute on other two Consul Servers:
+NonBootstrapServer1
+sudo consul agent -server -dc demo -data-dir /var/vagrant -node=consul-agent2 -bind=192.0.2.5 -encrypt=f6HnfkLTGbIkFcAfCGZ4RQ==
+
+NonBootstrapServer2
+sudo consul agent -server -dc demo -data-dir /var/vagrant -node=consul-agent2 -bind=192.0.2.6 -encrypt=f6HnfkLTGbIkFcAfCGZ4RQ==
+
+
+where /var/vagrant = data directory, all files related to the consul gets persisted here
+      /home/vagrant/dist = folder where the consul web UI is unzipped and kept i.e. UI directory
+      demo = Cluster name
+      consul-agent1, consul-agent2, consul-agent3 = name given to the various consul servers.       
+
+      
+
+where the following errors might come:
+No Cluster leader despite the consul members showing all member lists
+Solution: specific server as bootstrap i.e. -server -bootstrap as above.
+
+consul monitor to be executed on Consul BootStrap Server to check for the logs, an laternative to making the og mode as DEBUG in
+config file
+
 
 
 
