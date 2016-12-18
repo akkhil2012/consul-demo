@@ -26,12 +26,13 @@ apt-get update
 apt-get install git unzip -y
 cd /root
 wget https://releases.hashicorp.com/consul/0.6.2/consul_0.6.2_linux_amd64.zip
-unzip 0.6.2_linux_amd64.zip
+unzip consul_0.6.2_linux_amd64.zip
 rm -f 0.6.2_linux_amd64.zip
 mv consul /usr/bin/
 
-Bootstrap / Web UI Server
-wget https://dl.bintray.com/mitchellh/consul/0.5.2_web_ui.zip
+Bootstrap / Web UI Server(The BootSTrap MAchine)
+ https://dl.bintray.com/mitchellh/consul/0.5.2_web_ui.zip
+ wget    https://releases.hashicorp.com/consul/0.7.1/consul_0.7.1_web_ui.zip(latest)
 unzip 0.6.2_web_ui.zip
 rm -f 0.6.2_web_ui.zip
 cd /root/consul_demo
